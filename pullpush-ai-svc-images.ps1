@@ -11,13 +11,13 @@ $aiSvcImages = $aiSvcImages | Where-Object { $_.image -like "*translator*" }
 
 # text analytics sentiment
 $aiSvcImages = @()
-$content = Get-Content -Path .\iso_639-1.json -Raw
-$langs = $content | ConvertFrom-Json -Depth 3
-$langs.PSObject.Properties | ForEach-Object {
-    $lang = $_.Name
+$content = Get-Content -Path .\speech-to-text-tags.csv -Raw
+$langs = $content | ConvertFrom-Csv
+$langs | ForEach-Object {
+    $lang = $_.lang.ToLower()
     $aiSvcImages += [PSCustomObject]@{
         image = "mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment"
-        tags  = @("3.0-$lang")
+        tags  = @($lang)
     }
 }
 $aiSvcImages = $aiSvcImages | Where-Object { $_.tags -contains "3.0-en" }
@@ -25,25 +25,25 @@ $aiSvcImages = $aiSvcImages | Where-Object { $_.tags -contains "3.0-en" }
 
 # speech to text
 $aiSvcImages = @()
-$content = Get-Content -Path .\locale-languages.csv -Raw
+$content = Get-Content -Path .\speech-to-text-tags.csv -Raw
 $langs = $content | ConvertFrom-Csv
 $langs | ForEach-Object {
     $lang = $_.lang.ToLower()
     $aiSvcImages += [PSCustomObject]@{
         image = "mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text"
-        tags  = @("5.0.3-preview-amd64-$lang")
+        tags  = @($lang)
     }
 }
 $aiSvcImages = $aiSvcImages | Where-Object { $_.tags -contains "5.0.3-preview-amd64-en-us" }
 
-# text to speech
+# neural text to speech
 $aiSvcImages = @()
-$content = Get-Content -Path .\text-to-speech-tags.csv -Raw
+$content = Get-Content -Path .\neural-text-to-speech-tags.csv -Raw
 $langs = $content | ConvertFrom-Csv
 $langs | ForEach-Object {
     $tag = $_.tag.ToLower()
     $aiSvcImages += [PSCustomObject]@{
-        image = "mcr.microsoft.com/azure-cognitive-services/speechservices/text-to-speech"
+        image = "mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech"
         tags  = @($tag)
     }
 }
