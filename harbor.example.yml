@@ -1,0 +1,41 @@
+# Configuration file of Harbor
+
+# The IP address or hostname to access admin UI and registry service.
+# DO NOT use localhost or 127.0.0.1, because Harbor needs to be accessed by external clients.
+hostname: localhost
+
+# http related config
+http:
+  # port for http, default is 80. If https enabled, this port will redirect to https port
+  port: 8080
+
+# https related config
+# Uncomment the following lines if you want to use HTTPS
+# https:
+#   # https port for harbor, default is 443
+#   port: 8443
+#   # The path of cert and key files for nginx
+#   certificate: /your/certificate/path
+#   private_key: /your/private/key/path
+
+# # Uncomment external_url if you want to enable external proxy
+# # And when it enabled the hostname will no longer used
+# external_url: https://reg.mydomain.com:8433
+
+# The initial password of Harbor admin
+# It only works in first time to install harbor
+# Remember Change the admin password from UI after launching Harbor.
+harbor_admin_password: '***'
+
+# Harbor DB configuration
+database:
+  # The password for the root user of Harbor DB. Change this before any production use.
+  password: '***'
+  # The maximum number of connections in the idle connection pool. If it <=0, no idle connections are retained.
+  max_idle_conns: 100
+  # The maximum number of open connections to the database. If it <= 0, then there is no limit on the number of open connections.
+  # Note: the default number of connections is 1024 for postgres of harbor.
+  max_open_conns: 900
+
+# The default data volume
+data_volume: /data

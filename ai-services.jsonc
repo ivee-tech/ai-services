@@ -1,0 +1,227 @@
+[
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0",
+    "tags": [
+      "latest",
+      "2024-11-30",
+      "2024-11-30.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-4.0",
+    "tags": [
+      "latest",
+      "2024-11-30",
+      "2024-11-30.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/form-recognizer/business-card-4.0",
+    "tags": [
+      "latest",
+      "2024-11-30",
+      "2024-11-30.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/form-recognizer/custom-4.0",
+    "tags": [
+      "latest",
+      "2024-11-30",
+      "2024-11-30.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/form-recognizer/id-document-4.0",
+    "tags": [
+      "latest",
+      "2024-11-30",
+      "2024-11-30.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/form-recognizer/invoice-4.0",
+    "tags": [
+      "latest",
+      "2024-11-30",
+      "2024-11-30.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/form-recognizer/receipt-4.0",
+    "tags": [
+      "latest",
+      "2024-11-30",
+      "2024-11-30.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/textanalytics/language",
+    "tags": [
+      "latest"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/textanalytics/pii",
+    "tags": [
+      "latest",
+      "cpu",
+      "gpu"
+    ]
+  },
+  // {
+  //   "image": "mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment",
+  //   "tags": [
+  //     "latest",
+  //     "2024-08-15",
+  //     "2024-08-15.20250828.1-26420265"
+  //   ]
+  // },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/textanalytics/keyphrase",
+    "tags": [
+      "latest",
+      "3.0"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/textanalytics/ner",
+    "tags": [
+      "latest"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/textanalytics/customner",
+    "tags": [
+      "latest",
+      "3.0.135248048-onprem-amd64"
+    ]
+  },
+  // {
+  //   "image": "mcr.microsoft.com/azure-cognitive-services/textanalytics/healthcare",
+  //   "tags": [
+  //     "latest",
+  //     "2024-08-15",
+  //     "2024-08-15.20250828.1-26420265"
+  //   ]
+  // },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/language/clu",
+    "tags": [
+      "latest"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/language/luis",
+    "tags": [
+      "latest",
+      "1.1.020740002-amd64"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/vision/read",
+    "tags": [
+      "latest",
+      "2024-07-12",
+      "2024-07-12.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/vision/spatial-analysis",
+    "tags": [
+      "latest",
+      "2024-06-20",
+      "2024-06-20.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/speechservices/speech-to-text",
+    "tags": [
+      "latest",
+      "2024-09-01",
+      "2024-09-01.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/speechservices/text-to-speech",
+    "tags": [
+      "latest",
+      "1.16.0-amd64-da-dk-hellerus" // ... many 1.16 or 1.15 language tags
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/speechservices/custom-text-to-speech",
+    "tags": [
+      "latest",
+      "3.12.0-amd64"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/speechservices/neural-text-to-speech",
+    "tags": [
+      "latest",
+      "3.12.0-amd64-zh-cn-xiaoxiaoneural" // ... many 3.12 language tags
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/speechservices/speech-language-detection",
+    "tags": [
+      "latest",
+      "2024-09-01",
+      "2024-09-01.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/translator/text-translation",
+    "tags": [
+      "latest",
+      "1.0.03113.842-amd64"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/anomaly-detector",
+    "tags": [
+      "latest",
+      "2024-04-01",
+      "2024-04-01.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/luis",
+    "tags": [
+      "latest",
+      "2024-06-01",
+      "2024-06-01.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/qnamaker",
+    "tags": [
+      "latest",
+      "2024-03-01",
+      "2024-03-01.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/personalizer",
+    "tags": [
+      "latest",
+      "2024-02-01",
+      "2024-02-01.20250828.1-26420265"
+    ]
+  },
+  {
+    "image": "mcr.microsoft.com/azure-cognitive-services/face",
+    "tags": [
+      "latest",
+      "2024-07-01",
+      "2024-07-01.20250828.1-26420265"
+    ]
+  }
+  // {
+  //   "image": "mcr.microsoft.com/azure-cognitive-services/decision/anomaly-detector",
+  //   "tags": [
+  //     "latest"
+  //   ]
+  // }
+]
