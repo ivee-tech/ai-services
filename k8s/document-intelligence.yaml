@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: document-intelligence
+  namespace: ai-services
+  labels:
+    app: document-intelligence
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: document-intelligence
+  template:
+    metadata:
+      labels:
+        app: document-intelligence
+    spec:
+      containers:
+      - name: document-intelligence
+        image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: eula
+          value: "accept"
+        - name: billing
+          valueFrom:
+            secretKeyRef:
+              name: ai-services-secrets
+              key: docintel-endpoint-uri
+        - name: apikey
+          valueFrom:
+            secretKeyRef:
+              name: ai-services-secrets
+              key: docintel-api-key
+        - name: Mounts:License
+          value: "form-recognizer-layout"
+        - name: Mounts:Output
+          value: "form-recognizer-layout"
+        resources:
+          requests:
+            memory: "8Gi"
+            cpu: "4"
+          limits:
+            memory: "8Gi"
+            cpu: "4"
+        volumeMounts:
+        - name: licenses
+          mountPath: /license
+        - name: output
+          mountPath: /output
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 5000
+          initialDelaySeconds: 120
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /status
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 10
+      volumes:
+      - name: licenses
+        persistentVolumeClaim:
+          claimName: ai-services-licenses-pvc
+      - name: output
+        persistentVolumeClaim:
+          claimName: ai-services-output-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: document-intelligence-service
+  namespace: ai-services
+  labels:
+    app: document-intelligence
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30500
+    protocol: TCP
+  selector:
+    app: document-intelligence

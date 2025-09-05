@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: translator
+  namespace: ai-services
+  labels:
+    app: translator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: translator
+  template:
+    metadata:
+      labels:
+        app: translator
+    spec:
+      containers:
+      - name: translator
+        image: mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: eula
+          value: "accept"
+        - name: billing
+          valueFrom:
+            secretKeyRef:
+              name: ai-services-secrets
+              key: translator-endpoint-uri
+        - name: apikey
+          valueFrom:
+            secretKeyRef:
+              name: ai-services-secrets
+              key: translator-api-key
+        - name: Languages
+          value: "en,fr,es,ar,ru"
+        resources:
+          requests:
+            memory: "12Gi"
+            cpu: "4"
+          limits:
+            memory: "12Gi"
+            cpu: "4"
+        volumeMounts:
+        - name: models
+          mountPath: /usr/local/models
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 5000
+          initialDelaySeconds: 180
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /status
+            port: 5000
+          initialDelaySeconds: 120
+          periodSeconds: 10
+      volumes:
+      - name: models
+        persistentVolumeClaim:
+          claimName: translator-models-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: translator-service
+  namespace: ai-services
+  labels:
+    app: translator
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30501
+    protocol: TCP
+  selector:
+    app: translator

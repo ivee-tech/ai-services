@@ -44,7 +44,8 @@ foreach ($image in $images) {
 # Document Intelligence
 $endpointUri = $env:MNGENV_DOCINTEL_ENDPOINT_URI # 'https://di-ac-ae-001.cognitiveservices.azure.com/'
 $apiKey = $env:MNGENV_DOCINTEL_API_KEY
-$licenseMount = "/c/cog/licenses:/license"
+$licenseMount = "/c/data/cog/licenses:/license"
+$image = "localhost:8090/library/mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0:latest"
 $image = "mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0:latest"
 $subDir = "form-recognizer-layout"
 # download licence
@@ -56,11 +57,19 @@ docker run --rm -it -p 5000:5000 `
     apikey=$apiKey `
     DownloadLicense=True `
     Mounts:License=$subDir
+# docker pull localhost:8090/library/mcr.microsoft.com/azure-cognitive-services/form-recognizer/layout-4.0@sha256:f69b939ded64f941c8560681ccc71c005cd7ef9c31e343d5446b57738d302546
+docker run --rm -it -p 5000:5000 `
+    -v $licenseMount `
+    $image `
+    eula=accept `
+    billing=$endpointUri `
+    apikey=$apiKey 
+
 
 # use with the license
 $memorySize = "8g"
 $numberCpus = 4
-$outputMount = "/c/cog/output:/output"
+$outputMount = "/c/data/cog/output:/output"
 docker run --rm -it -p 5000:5050 --memory $memorySize --cpus $numberCpus `
     -v $licenseMount `
     -v $outputMount `
